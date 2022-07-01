@@ -1,20 +1,19 @@
 import React from "react";
 
 const Websocket = (props) => {
-  let text = "WebSocket running...";
+  // let text = "WebSocket running...";
 
   //   const exampleSocket = new WebSocket(
   //     "wss://www.example.com/socketserver",
   //     "protocolOne"
   //   );
-  const geminiSocket = new WebSocket("wss://api.gemini.com/v2/marketdata");
 
   //   exampleSocket.onopen = function (event) {
   //     exampleSocket.send(
   //       "Here's some text that the server is urgently awaiting!"
   //     );
   //   };
-  geminiSocket.onopen = function (event) {
+  props.geminiSocket.onopen = function (event) {
     const sendMsg = {
       type: "subscribe",
       subscriptions: [
@@ -22,23 +21,32 @@ const Websocket = (props) => {
           name: "candles_1d",
           symbols: ["BTCUSD", "ETHUSD", "DOGEUSD", "SHIBUSD", "LTCUSD"],
         },
+        {
+          name: "l2",
+          symbols: ["BTCUSD", "ETHUSD", "DOGEUSD", "SHIBUSD", "LTCUSD"],
+        },
       ],
     };
-    geminiSocket.send(JSON.stringify(sendMsg));
+    props.geminiSocket.send(JSON.stringify(sendMsg));
   };
 
   const requestLatestData = () => {
     const sendMsg = {
       type: "subscribe",
-      subscriptions: [{ name: "l2", symbols: ["BTCUSD", "ETHUSD"] }],
+      subscriptions: [
+        {
+          name: "l2",
+          symbols: ["BTCUSD", "ETHUSD", "DOGEUSD", "SHIBUSD", "LTCUSD"],
+        },
+      ],
     };
-    geminiSocket.send(JSON.stringify(sendMsg));
+    props.geminiSocket.send(JSON.stringify(sendMsg));
   };
 
   //   exampleSocket.onmessage = function (event) {
   //     console.log(event.data);
   //   };
-  geminiSocket.onmessage = function (event) {
+  props.geminiSocket.onmessage = function (event) {
     // console.log(event.data);
     const msg = JSON.parse(event.data);
     console.log(msg);
@@ -79,22 +87,32 @@ const Websocket = (props) => {
           },
         ],
       };
-      geminiSocket.send(JSON.stringify(sendMsg));
+      props.geminiSocket.send(JSON.stringify(sendMsg));
+    }
+
+    if (msg.type === "trade" && msg.symbol === "BTCUSD") {
+      props.setBTCUSDtrade(msg.price);
+      console.log(props.BTCUSDtrade);
+    }
+    if (msg.type === "trade" && msg.symbol === "ETHUSD") {
+      props.setETHUSDtrade(msg.price);
+      console.log(props.ETHUSDtrade);
+    }
+    if (msg.type === "trade" && msg.symbol === "DOGEUSD") {
+      props.setDOGEUSDtrade(msg.price);
+      console.log(props.DOGEUSDtrade);
+    }
+    if (msg.type === "trade" && msg.symbol === "SHIBUSD") {
+      props.setSHIBUSDtrade(msg.price);
+      console.log(props.SHIBUSDtrade);
+    }
+    if (msg.type === "trade" && msg.symbol === "LTCUSD") {
+      props.setLTCUSDtrade(msg.price);
+      console.log(props.LTCUSDtrade);
     }
   };
 
-  const stopWebSocket = () => {
-    console.log("Trying to stop web socket...");
-    geminiSocket.close();
-  };
-
-  return (
-    <>
-      <h6 onClick={stopWebSocket}>{text}</h6>
-      <button onClick={requestLatestData}>Request Latest Data</button>
-      <button onClick={stopWebSocket}>Stop Web Socket</button>
-    </>
-  );
+  return <></>;
 };
 
 export default Websocket;
