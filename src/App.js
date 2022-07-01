@@ -1,14 +1,7 @@
 import React, { useState, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Results from "./components/Results";
-import Search from "./components/Search";
-import Websocket from "./components/Websocket";
-import DisplaySampleChart from "./components/DisplaySampleChart";
-import DisplayETHUSD1d from "./components/DisplayETHUSD1d";
-import DisplayBTCUSD1d from "./components/DisplayBTCUSD1d";
-import DisplayCandles1d from "./components/DisplayCandles1d";
-import LoadingSpinner from "./components/LoadingSpinner";
 import NavBar from "./components/NavBar";
+import Websocket from "./components/Websocket";
 import PageBTCUSD from "./pages/PageBTCUSD";
 import PageETHUSD from "./pages/PageETHUSD";
 import PageDOGEUSD from "./pages/PageDOGEUSD";
@@ -45,7 +38,7 @@ function App() {
           <h1>Gemini Crypto App by Dneo</h1>
         </div>
         <div className="col-md-3">
-          <button className="button-81" role="button" onClick={stopWebSocket}>
+          <button className="button-81" onClick={stopWebSocket}>
             Stop Live Updates
           </button>
         </div>
@@ -119,13 +112,6 @@ function App() {
           geminiSocket={geminiSocket}
         />
       }
-      <br />
-      {/* <br /> */}
-      {/* {<DisplaySampleChart />} */}
-      {/* {<DisplayBTCUSD1d />} */}
-      {/* <br /> */}
-      {/* {<DisplayETHUSD1d />} */}
-      {/* <br /> */}
     </>
   );
 }
