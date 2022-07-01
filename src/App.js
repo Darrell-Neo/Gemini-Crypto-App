@@ -89,6 +89,7 @@ function App() {
       </main>
       {
         <Websocket
+          geminiSocket={geminiSocket}
           BTCUSD={BTCUSD}
           setBTCUSD={setBTCUSD}
           ETHUSD={ETHUSD}
@@ -99,17 +100,11 @@ function App() {
           setSHIBUSD={setSHIBUSD}
           LTCUSD={LTCUSD}
           setLTCUSD={setLTCUSD}
-          BTCUSDtrade={BTCUSDtrade}
           setBTCUSDtrade={setBTCUSDtrade}
-          ETHUSDtrade={ETHUSDtrade}
           setETHUSDtrade={setETHUSDtrade}
-          DOGEUSDtrade={DOGEUSDtrade}
           setDOGEUSDtrade={setDOGEUSDtrade}
-          SHIBUSDtrade={SHIBUSDtrade}
           setSHIBUSDtrade={setSHIBUSDtrade}
-          LTCUSDtrade={LTCUSDtrade}
           setLTCUSDtrade={setLTCUSDtrade}
-          geminiSocket={geminiSocket}
         />
       }
     </>
