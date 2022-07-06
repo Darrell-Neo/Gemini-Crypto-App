@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/373.c188eac6.chunk.js","mappings":"mIAKA,UAHc,WACZ,OAAO","sources":["pages/Trade.js"],"sourcesContent":["import React from \"react\";\n\nconst Trade = () => {\n  return <h1>Work-in-progress</h1>;\n};\nexport default Trade;\n"],"names":[],"sourceRoot":""}
