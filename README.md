@@ -7,8 +7,6 @@ App to monitor cryptocurrency prices in the Gemini exchange in real-time
 ### Technicals Used
 
 ```
-- MongoDB (non-sql database)
-- Express
 - React
 - Node.js
 - Gemini exchange's websocket API connection
